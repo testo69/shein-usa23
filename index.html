@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SHEIN Gift Card</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #fafafa;
+    color: #1a1a1a;
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 10px;
+}
+
+nav {
+    background: #fff;
+    padding: 12px 0;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+nav h1 {
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.hero-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    background: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+
+.main-image {
+    max-width: 300px;
+    width: 100%;
+    border-radius: 8px;
+}
+
+.gift-card-info h2 {
+    font-size: 14px;
+    color: #555;
+}
+
+#selectedAmount {
+    font-size: 24px;
+    font-weight: 700;
+    color: #ff2e63;
+}
+
+.design-section,
+.amount-section,
+.form-section {
+    margin-top: 10px;
+    background: #fff;
+    padding: 12px;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+
+h3 {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+/* DESIGN GRID */
+.design-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+    gap: 6px;
+    max-width: 320px;
+    margin: auto;
+}
+
+.design-option {
+    border: 1px solid transparent;
+    padding: 3px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.design-option img {
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.design-option.selected {
+    border-color: #ff2e63;
+}
+
+/* AMOUNT */
+.amount-options {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.amount-option {
+    padding: 6px 12px;
+    background: #f8f9fa;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.amount-option.selected {
+    background: #ff2e63;
+    color: #fff;
+}
+
+/* FORM */
+.input-group {
+    margin: 10px 0;
+}
+
+.input-group label {
+    font-size: 11px;
+}
+
+.input-group input,
+textarea {
+    width: 100%;
+    padding: 6px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+button {
+    width: 100%;
+    padding: 8px;
+    background: #ff2e63;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #e02456;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <h1>SHEIN Gift Card</h1>
+</nav>
+
+<div class="container">
+
+<div class="hero-section">
+    <img src="images/1.jpg" class="main-image" id="mainImage">
+    <div class="gift-card-info">
+        <h2>SHEIN E-Gift Card</h2>
+        <p id="selectedAmount">$80.00</p>
+    </div>
+</div>
+
+<div class="design-section">
+<h3>Choose Your Design</h3>
+<div class="design-options" id="designOptions">
+
+<div class="design-option selected" data-image="images/1.jpg"><img src="images/1.jpg"></div>
+<div class="design-option" data-image="images/2.jpg"><img src="images/shein.jpg"></div>
+<div class="design-option" data-image="images/3.jpg"><img src="images/shein.jpg"></div>
+<div class="design-option" data-image="images/4.jpg"><img src="images/shein.jpg"></div>
+<div class="design-option" data-image="images/5.jpg"><img src="images/shein.jpg"></div>
+<div class="design-option" data-image="images/6.jpg"><img src="images/shein.jpg"></div>
+<div class="design-option" data-image="images/7.jpg"><img src="images/shein.jpg"></div>
+
+</div>
+</div>
+
+<div class="amount-section">
+<h3>Select Amount</h3>
+<div class="amount-options" id="amountOptions">
+<div class="amount-option selected" data-amount="80">$80.00</div>
+<div class="amount-option" data-amount="100">$100.00</div>
+<div class="amount-option" data-amount="200">$200.00</div>
+<div class="amount-option" data-amount="300">$300.00</div>
+<div class="amount-option" data-amount="500">$500.00</div>
+</div>
+</div>
+
+<form class="form-section" method="POST" action="app.php">
+<input type="hidden" name="selectedDesign" id="selectedDesign" value="images/1.jpg">
+<input type="hidden" name="selectedAmount" id="selectedAmountInput" value="80">
+
+<div class="input-group">
+<label>Recipient Email*</label>
+<input type="email" required>
+</div>
+
+<button>Proceed to Checkout</button>
+</form>
+
+</div>
+
+<script>
+const mainImage = document.getElementById('mainImage');
+const selectedDesign = document.getElementById('selectedDesign');
+
+document.getElementById('designOptions').onclick = e => {
+    const option = e.target.closest('.design-option');
+    if (!option) return;
+
+    document.querySelectorAll('.design-option').forEach(d => d.classList.remove('selected'));
+    option.classList.add('selected');
+
+    mainImage.src = option.dataset.image;
+    selectedDesign.value = option.dataset.image;
+};
+
+document.getElementById('amountOptions').onclick = e => {
+    if (!e.target.classList.contains('amount-option')) return;
+
+    document.querySelectorAll('.amount-option').forEach(a => a.classList.remove('selected'));
+    e.target.classList.add('selected');
+
+    document.getElementById('selectedAmount').textContent = `$${e.target.dataset.amount}.00`;
+    document.getElementById('selectedAmountInput').value = e.target.dataset.amount;
+};
+</script>
+
+</body>
+</html>
